@@ -39,6 +39,7 @@ public class MainController {
             @Override
             public void onMessage(ByteBuffer bb) {
                 File file = new File(System.getProperty("user.home"), "sample.mp3");
+                System.out.println("Path " + file.getAbsolutePath());
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file);
