@@ -38,7 +38,7 @@ public class MainController {
         WebSocketClient mWs = new WebSocketClient(new URI("wss://downloadmanagerserver1.herokuapp.com/downloadManager1/123131")) {
             @Override
             public void onMessage(ByteBuffer bb) {
-                File file = new File(System.getProperty("user.home"), "Desktop/sample.mp3");
+                File file = new File(System.getProperty("user.home"), "sample.mp3");
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file);
