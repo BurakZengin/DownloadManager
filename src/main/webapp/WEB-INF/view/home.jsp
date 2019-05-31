@@ -262,13 +262,11 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md" style="margin-top: 10px; margin-left: 15px;">
-
-            </div>
             <div class="col-md"></div>
             <div class="col-md" style="margin-top: 10px; margin-right: 10px;" align="right">
-                <button type="button" class="btn btn-light">About Project</button>
-                <button type="button" class="btn btn-light">Download Project</button>
+                <a href="https://github.com/BurakZengin?tab=repositories" target="_blank" class="btn btn-light">Project Source Code</a>
+                <a href="https://github.com/BurakZengin/DownloadManagerServer3/blob/master/src/main/java/com/DownloadManagerServer3/Service/WebSocketEndpoint.java" target="_blank" class="btn btn-light">Web Socket Server End Point Codes</a>
+                <a href="https://github.com/BurakZengin/DownloadManager/blob/master/src/main/webapp/WEB-INF/view/home.jsp" target="_blank" class="btn btn-light">Client End Point JavaScript Codes</a>
             </div>
         </div>
         <div class="container vertical-center">
