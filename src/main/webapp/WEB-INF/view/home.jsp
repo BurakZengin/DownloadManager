@@ -254,14 +254,9 @@
                     a.download = selectedMusic + '.mp3';
                 });
 
-//                $("#file").on("click", function () {
-//                    $("input").trigger("click");
-//                });
-
-                document.getElementById("fileBtn").addEventListener("click", function () {
-                    uploadFile3();
+                $("#file").on("click", function () {
+                    $("input").trigger("click");
                 });
-
             });
         </script>
     </head>
@@ -333,7 +328,7 @@
                                 <button id="transferButton" type="button" style="padding: 8px 54px;" class="btn btn-secondary">Download</button>
                                 <a href="javascript:void(0)" id="a"><button id="download" type="button" style="padding: 8px 49px; margin-top: 5px; visibility: hidden;" class="btn btn-secondary">Press for Download</button></a>
                             </div>
-                            <input type="file" style="display: none" />
+                            <input id="file" type="file" style="display: none" />
                         </div>
                     </div>
                 </div>
