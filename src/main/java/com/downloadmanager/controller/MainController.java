@@ -11,12 +11,18 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
+import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 import org.apache.commons.io.IOUtils;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -32,7 +38,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     @RequestMapping(value = "/")
-    public String Login() {
+    public String Login() throws MalformedURLException, IOException {
+
+        List<String> urlList = new ArrayList();
+        urlList.add("https://downloadmanagerserver1.herokuapp.com");
+        urlList.add("https://downloadmanagerserver2.herokuapp.com");
+        urlList.add("https://downloadmanagerserver3.herokuapp.com");
+
+        for (int i = 0; i < 3; i++) {
+            URL obj = new URL(urlList.get(i));
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            // optional default is GET
+            con.setRequestMethod("GET");
+
+            //add request header
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = con.getResponseCode();
+        }
+
         return "home";
     }
 

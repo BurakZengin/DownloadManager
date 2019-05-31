@@ -203,7 +203,6 @@
                         myBlobBuilder.append(event.data);
                         $('#transferButton').css('display', 'none');
                         $('#download').css('visibility', 'visible');
-                        //$("#transferButton").text("Press for Open");
                     };
 
                     socket2.onclose = function (event) {
@@ -226,11 +225,9 @@
                     };
 
                     socket3.onmessage = function (event) {
-//                        console.log(event.data);
                         myBlobBuilder.append(event.data);
                         $('#transferButton').css('display', 'none');
                         $('#download').css('visibility', 'visible');
-                        //$("#transferButton").text("Press for Open");
                     };
 
                     socket3.onclose = function (event) {
