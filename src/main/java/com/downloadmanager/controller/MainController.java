@@ -6,14 +6,18 @@
 package com.downloadmanager.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.io.IOUtils;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.springframework.stereotype.Controller;
@@ -33,12 +37,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/Transfer", method = RequestMethod.POST)
-    public String SocketHandler() throws URISyntaxException {
+    public String SocketHandler(HttpServletResponse response) throws URISyntaxException {
 
+        File file = new File(System.getProperty("user.home"), "sample.mp3");
         WebSocketClient mWs = new WebSocketClient(new URI("wss://downloadmanagerserver1.herokuapp.com/downloadManager1/123131")) {
             @Override
             public void onMessage(ByteBuffer bb) {
-                File file = new File(System.getProperty("user.home"), "sample.mp3");
+
                 System.out.println("Path " + file.getAbsolutePath());
                 FileOutputStream fos = null;
                 try {
@@ -74,6 +79,18 @@ public class MainController {
         };
         //open websocket
         mWs.connect();
+
+        try {
+            InputStream inputStream = new FileInputStream(file);
+            response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition", "attachment; filename=sample.mp3");
+            IOUtils.copy(inputStream, response.getOutputStream());
+            response.flushBuffer();
+            inputStream.close();
+        } catch (Exception e) {
+            //LOGGER.debug("Request could not be completed at this moment. Please try again.");
+            e.printStackTrace();
+        }
 ////        JSONObject obj = new JSONObject();
 ////        obj.put("event", "addChannel");
 ////        obj.put("channel", "ok_btccny_ticker");
