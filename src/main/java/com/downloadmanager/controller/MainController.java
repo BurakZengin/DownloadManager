@@ -36,6 +36,7 @@ public class MainController {
         return "home";
     }
 
+    // Sample Java Codes
     @RequestMapping(value = "/Transfer", method = RequestMethod.POST)
     public String SocketHandler(HttpServletResponse response) throws URISyntaxException {
 
@@ -91,12 +92,7 @@ public class MainController {
             //LOGGER.debug("Request could not be completed at this moment. Please try again.");
             e.printStackTrace();
         }
-////        JSONObject obj = new JSONObject();
-////        obj.put("event", "addChannel");
-////        obj.put("channel", "ok_btccny_ticker");
-////        String message = obj.toString();
-////        //send message
-////        mWs.send(message);
+
         return "home";
     }
 }
